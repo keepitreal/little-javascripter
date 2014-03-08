@@ -9,6 +9,7 @@ var cdr = function (lat) {
 
 var cons = function (a, lat) {
 	lat.unshift(a);
+	return lat;
 };
 
 var member = function (a, lat) {
@@ -30,3 +31,50 @@ var rember = function (a, lat) {
 		}
 	}
 };
+
+var firsts = function (l) {
+	if (l.length === 0) {
+		return [];
+	} else {
+		return cons(car(car(l)), firsts(cdr(l)));
+	}
+};
+
+var insertR = function (neww, oldd, lat) {
+	if (lat.length === 0) {
+		return [];
+	} else {
+		if (car(lat) === oldd) {
+			return cons(old, cons(neww, cdr(lat)));
+		} else {
+			return cons(car(lat), insertR(neww, oldd, cdr(lat)));
+		}
+	}
+};
+
+var insertL = function (neww, oldd, lat) {
+	if (lat.length === 0) {
+		return [];
+	} else {
+		if (car(lat) === oldd) {
+			return cons(neww, cons(old, cdr(lat)));
+		} else {
+			return cons(car(lat), insertL(neww, oldd, cdr(lat)));
+		}
+	}
+};
+
+var subst = function(neww, oldd, lat) {
+	if (lat.length === 0) {
+		return [];
+	} else {
+		if (car(lat) === oldd) {
+			return cons(neww, cdr(lat));
+		} else {
+			return cons((car(lat)), (subst(neww, oldd, cdr(lat))));
+		}
+	}
+};
+
+
+
